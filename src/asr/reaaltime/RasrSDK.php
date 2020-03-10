@@ -30,13 +30,13 @@ class RasrSDK
     public function __construct(array $config)
     {
         if (array_key_exists('SECRET_ID', $config)) $this->SECRET_ID = $config['SECRET_ID'];
-        if (array_key_exists('SECRET_KEY', $config)) $this->SECRET_ID = $config['SECRET_KEY'];
-        if (array_key_exists('APPID', $config)) $this->SECRET_ID = $config['APPID'];
-        if (array_key_exists('ENGINE_MODEL_TYPE', $config)) $this->SECRET_ID = $config['ENGINE_MODEL_TYPE'];
-        if (array_key_exists('RES_TYPE', $config)) $this->SECRET_ID = $config['RES_TYPE'];
-        if (array_key_exists('RESULT_TEXT_FORMAT', $config)) $this->SECRET_ID = $config['RESULT_TEXT_FORMAT'];
-        if (array_key_exists('VOICE_FORMAT', $config)) $this->SECRET_ID = $config['VOICE_FORMAT'];
-        if (array_key_exists('CUTLENGTH', $config)) $this->SECRET_ID = $config['CUTLENGTH'];
+        if (array_key_exists('SECRET_KEY', $config)) $this->SECRET_KEY = $config['SECRET_KEY'];
+        if (array_key_exists('APPID', $config)) $this->APPID = $config['APPID'];
+        if (array_key_exists('ENGINE_MODEL_TYPE', $config)) $this->ENGINE_MODEL_TYPE = $config['ENGINE_MODEL_TYPE'];
+        if (array_key_exists('RES_TYPE', $config)) $this->RES_TYPE = $config['RES_TYPE'];
+        if (array_key_exists('RESULT_TEXT_FORMAT', $config)) $this->RESULT_TEXT_FORMAT = $config['RESULT_TEXT_FORMAT'];
+        if (array_key_exists('VOICE_FORMAT', $config)) $this->VOICE_FORMAT = $config['VOICE_FORMAT'];
+        if (array_key_exists('CUTLENGTH', $config)) $this->CUTLENGTH = $config['CUTLENGTH'];
     }
 
 
@@ -158,7 +158,7 @@ class RasrSDK
         $reqArr['engine_model_type'] = $this->ENGINE_MODEL_TYPE;
         $reqArr['res_type'] = $this->RES_TYPE;
         $reqArr['result_text_format'] = $this->RESULT_TEXT_FORMAT;
-        $reqArr['voice_id'] = randstr(16);
+        $reqArr['voice_id'] = $this->randstr(16);
         $reqArr['needvad'] = 0;
         $reqArr['timeout'] = 20000;
         $reqArr['source'] = 0;
@@ -200,7 +200,7 @@ class RasrSDK
             $serverUrl .= "needvad=" . $reqArr['needvad'] . "&";
             $serverUrl .= "voice_format=" . $reqArr['voice_format'];
 
-            $autho = createSign($reqArr, "POST", "asr.cloud.tencent.com", "/asr/v1/", $secretKey);
+            $autho = $this->createSign($reqArr, "POST", "asr.cloud.tencent.com", "/asr/v1/", $secretKey);
             if ($datalen < $cutlegth) {
                 $data = file_get_contents($filepath, NULL, NULL, $seq * $cutlegth, $cutlegth);
             } else {
@@ -217,7 +217,7 @@ class RasrSDK
 
             $rsp_str = "";
             $http_code = -1;
-            $ret = http_curl_exec($serverUrl, $data, $rsp_str, $http_code, 'POST', 10, array(), $header);
+            $ret = $this->http_curl_exec($serverUrl, $data, $rsp_str, $http_code, 'POST', 10, array(), $header);
             if ($ret != 0) {
                 echo "http_curl_exec failed \n";
                 return false;
