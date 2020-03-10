@@ -16,7 +16,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Devtech\\Tencent\\Asr\\Realtime": "src/asr/reaaltime"
+      "Devtech\\Tencent\\Asr\\Realtime\\": "src/asr/reaaltime"
     }
   }
 }
