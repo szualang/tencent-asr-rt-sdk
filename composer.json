@@ -1,0 +1,22 @@
+{
+  "name": "szualang/tencent-asr-rt-sdk",
+  "description": "封装腾讯实时语音sdk，支持composer",
+  "minimum-stability": "dev",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "lianglang",
+      "email": "liangalang@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Devtech\\Tencent\\Asr\\Realtime": "src/asr/reaaltime"
+    }
+  }
+}

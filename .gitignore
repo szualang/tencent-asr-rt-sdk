@@ -1,0 +1,10 @@
+
+.idea/$CACHE_FILE$
+.idea/.gitignore
+.idea/composerJson.xml
+.idea/deployment.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/tencent-asr-rt-sdk.iml
+.idea/vagrant.xml
+.idea/vcs.xml
